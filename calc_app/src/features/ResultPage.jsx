@@ -13,8 +13,8 @@ const ResultPage = () => {
 
     const resultShowingStyle = {
         width: '60%',
-        height: '100%',
-        margin: '100px auto',
+        height: '50%',
+        margin: '50px auto',
         padding: '200px',
         textAlign: 'center',
         backgroundColor: '#ccc',
@@ -22,7 +22,6 @@ const ResultPage = () => {
         'flexDirection': 'column',
         'alignItems': 'center',
         'justifyContent': 'spaceBetween',
-        textShadow: '1px 1px #000',
     }
 
     const buttonStyle = {
@@ -34,7 +33,7 @@ const ResultPage = () => {
     return (
         <div style={resultShowingStyle}>
             <h1>Average Cubic Weight: </h1>
-            {result == null ? '' : <h1>{result}kg</h1> }
+            {result == null ? '' : <h2>{result}kg</h2> }
             {buttonShow && <button style={buttonStyle} onClick={showResultHandler}>Show Result</button>}
             
         </div>
