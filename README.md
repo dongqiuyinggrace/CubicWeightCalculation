@@ -8,6 +8,8 @@ Following is the setup instructions:
 
 - `cd API`
 
+- Following the code editor's prompt to restore packages
+
 - `dotnet watch run`
 
 ## Step2: 
@@ -15,6 +17,8 @@ Following is the setup instructions:
 ### calc_app (For showing result, implemented with React)
 
 - `cd calc_app`
+
+- `npm install`
 
 - `npm start`
 
