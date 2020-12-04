@@ -21,5 +21,5 @@ Following is the setup instructions:
 ## Step3: (Showing result)
 
 - In any browser, open "http://localhost:3000/"
-- Click "Show Result" button, the average cubit weight result will be shown.
+- Click the "Show Result" button, then the average cubic weight result will be shown.
 
