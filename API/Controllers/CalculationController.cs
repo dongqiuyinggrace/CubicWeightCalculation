@@ -14,10 +14,11 @@ namespace API.Controllers
         {
             _processor = processor;
         }
+
         [HttpGet]
         public async Task<IActionResult> GetCalculationResult()
         {
-            var result = await _processor.CalcAveCubicWeight();
+            var result = await _processor.CalcAveCubicWeightAsync();
             return Ok(result);
         }
     }

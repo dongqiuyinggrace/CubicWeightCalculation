@@ -1,14 +1,11 @@
-﻿
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Products
 {
     public class CubicWeightCalculator
     {
-        private const int CONVERSION_FACTOR = 250;
-        private const string CATEGORY_TO_CHECK = "Air Conditioners";
         private const string FIRST_PAGE_URL = "/api/products/1";
         private readonly IProductInfoGetter _productInfoGetter;
         private List<Product> products = new List<Product>();
@@ -18,39 +15,42 @@ namespace API.Products
             _productInfoGetter = productInfoGetter;
         }
 
-        public async Task<decimal> CalculateAveCubicWeight()
+        public async Task<decimal> CalculateAverageCubicWeightAsync()
         {
             var productUrl = FIRST_PAGE_URL;   
             while (productUrl != null)
             {
-                var productResult = await _productInfoGetter.GetProductResult(productUrl);
+                var productResult = await _productInfoGetter.GetProductResultAsync(productUrl);
                 GetProductsInEachPage(productResult);
                 productUrl = productResult.Next;
             }
-
-            return GetAveCubicWeight();
+            return GetAverageCubicWeight();
         }
 
         private void GetProductsInEachPage(ProductResult productResult)
         {
+            if (productResult.Objects == null)
+            {
+                return;
+            }
+
             foreach (var product in productResult.Objects)
             {
-                if (product.Category == CATEGORY_TO_CHECK && product.Size != null)
+                if (product.IsAirConditioner() && product.Size != null)
                 {
                    products.Add(product);
                 }
             }
         }
 
-        private decimal GetAveCubicWeight()
+        private decimal GetAverageCubicWeight()
         {
-            var totalWeight = 0.0m;
-            foreach(var product in products)
+            if (products.Count == 0)
             {
-                totalWeight += product.Size.GetVolumeInM() * CONVERSION_FACTOR;
+                return 0;
             }
 
-            return totalWeight / products.Count;
+            return products.Sum(pt => pt.GetCubicWeight()) / products.Count;
         }
     }
 }

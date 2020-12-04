@@ -4,6 +4,6 @@ namespace API.Products
 {
     public interface IProductProcessor
     {
-        Task<decimal> CalcAveCubicWeight();
+        Task<decimal> CalcAveCubicWeightAsync();
     }
 }

@@ -4,12 +4,16 @@ namespace API.Products
 {
     public class ProductProcessor : IProductProcessor
     {
-        public async Task<decimal> CalcAveCubicWeight()
+        private readonly IProductInfoGetter _productInfoGetter;
+
+        public ProductProcessor(IProductInfoGetter productInfoGetter)
+        {
+            _productInfoGetter = productInfoGetter;
+        }
+        public async Task<decimal> CalcAveCubicWeightAsync()
         {   
-            var productInfoGetter = new ProductInfoGetter();
-            var calculator = new CubicWeightCalculator(productInfoGetter);
-            var result = await calculator.CalculateAveCubicWeight();
-            return result;
+            var calculator = new CubicWeightCalculator(_productInfoGetter);
+            return await calculator.CalculateAverageCubicWeightAsync();
         }
     }
 }

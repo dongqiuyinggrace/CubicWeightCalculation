@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import { getAveCubicWeight } from './../app/services/productService';
+import { getAverageCubicWeight } from './../app/services/productService';
 
 const ResultPage = () => {
     const [result, setResult] = useState();
     const [buttonShow, setButtonShow] = useState(true);
 
     const showResultHandler = async () => {
-        let {data} = await getAveCubicWeight();
+        let {data} = await getAverageCubicWeight();
         setResult(data);
         setButtonShow(false);
     }
@@ -34,8 +34,7 @@ const ResultPage = () => {
         <div style={resultShowingStyle}>
             <h1>Average Cubic Weight: </h1>
             {result == null ? '' : <h2>{result}kg</h2> }
-            {buttonShow && <button style={buttonStyle} onClick={showResultHandler}>Show Result</button>}
-            
+            {buttonShow && <button style={buttonStyle} onClick={showResultHandler}>Show Result</button>}    
         </div>
     )
 }

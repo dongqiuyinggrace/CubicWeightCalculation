@@ -28,7 +28,9 @@ namespace API
         {
             services.AddControllers();
             services.AddCors();
+            services.AddHttpClient();
             services.AddScoped<IProductProcessor, ProductProcessor>();
+            services.AddScoped<IProductInfoGetter, ProductInfoGetter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

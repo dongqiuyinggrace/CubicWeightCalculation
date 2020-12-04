@@ -1,4 +1,4 @@
-const { default: ResultPage } = require("../../features/ResultPage");
+import ResultPage from './../../features/ResultPage';
 
 function App() {
   return (

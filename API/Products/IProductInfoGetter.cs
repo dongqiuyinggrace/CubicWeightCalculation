@@ -4,6 +4,6 @@ namespace API.Products
 {
     public interface IProductInfoGetter
     {
-        Task<ProductResult> GetProductResult(string url);
+        Task<ProductResult> GetProductResultAsync(string url);
     }
 }

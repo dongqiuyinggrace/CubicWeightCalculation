@@ -1,5 +1,6 @@
-import http from './httpService'
+import http from './httpService';
+import { apiUrl } from '../../config.json';
 
-export const getAveCubicWeight = async () => {
-    return await http.get('http://localhost:5000/api/calculation');
+export const getAverageCubicWeight = async () => {
+    return await http.get(apiUrl + '/calculation');
 }
